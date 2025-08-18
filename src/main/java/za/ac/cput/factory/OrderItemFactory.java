@@ -21,7 +21,6 @@ public class OrderItemFactory {
         }
 
         return new OrderItem.Builder()
-                .setOrderID(orderID)
                 .setProduct(product)
                 .setQuantity(quantity)
                 .setUnitPrice(unitPrice)
