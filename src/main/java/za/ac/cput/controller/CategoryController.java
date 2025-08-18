@@ -9,13 +9,13 @@ import za.ac.cput.service.CategoryService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/category")
+@RequestMapping("/categories")
 public class CategoryController {
 
     private final CategoryService service;
 
     @Autowired
-    private CategoryController(CategoryService service) {
+    public CategoryController(CategoryService service) {
         this.service = service;
 
     }
@@ -26,9 +26,9 @@ public class CategoryController {
     }
 
 
-    @GetMapping("/read/{categoryId}")
-    public Category read(@PathVariable Long categoryId) {
-        return service.read(categoryId);
+    @GetMapping("/read/{Id}")
+    public Category read(@PathVariable Long Id) {
+        return service.read(Id);
     }
 
     @PutMapping("/update")
@@ -46,4 +46,6 @@ public class CategoryController {
     public List<Category> getAll() {
         return service.getAll();
     }
-}
+
+    }
+

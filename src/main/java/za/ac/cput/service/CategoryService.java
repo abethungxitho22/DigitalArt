@@ -11,7 +11,7 @@ public class CategoryService implements ICategoryService {
 
     private final CategoryRepository categoryRepository;
     @Autowired
-    private CategoryService(CategoryRepository repository){
+    public CategoryService(CategoryRepository repository){
         this.categoryRepository = repository;  }
 
     @Override
@@ -38,4 +38,7 @@ public class CategoryService implements ICategoryService {
     public List<Category> getAll() {
         return this.categoryRepository.findAll();
     }
-}
+
+
+    }
+

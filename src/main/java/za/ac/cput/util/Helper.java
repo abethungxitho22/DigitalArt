@@ -43,7 +43,7 @@ public class Helper {
     public static boolean isValidOrderItem(OrderItem orderItem) {
         return orderItem != null &&
                 isValidOrderItemID(orderItem.getItemID()) &&
-                isValidOrderID(orderItem.getOrderID()) &&
+                //isValidOrderID(orderItem.getOrderID()) &&
                 isValidProduct(orderItem.getProduct()) &&
                 isValidQuantity(orderItem.getQuantity()) &&
                 isValidUnitPrice(orderItem.getUnitPrice()) &&
