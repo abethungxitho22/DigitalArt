@@ -94,9 +94,8 @@ public class Helper {
      }
 
      public static boolean isNullOrEmpty(String str) {
-        if (str.isEmpty() || str == null)
-            return true;
-        return false;
+         return str == null || str.isEmpty();
+
      }
     public static boolean isValidEntityId(String id) {
         return id != null && !id.trim().isEmpty() && id.length() <= 50;
