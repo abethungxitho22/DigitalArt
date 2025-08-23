@@ -14,11 +14,15 @@ import org.springframework.stereotype.Component;
 @Component
 public class OrderItemFactory {
 
-    public static OrderItem createOrderItem(Long orderID, Product product, int quantity, double unitPrice) {
-        if (!Helper.isValidOrderID(orderID) || !Helper.isValidProductAssociation(product) ||
-                !Helper.isValidQuantity(quantity) || !Helper.isValidUnitPrice(unitPrice)) {
+
+    public OrderItem create(Long orderID, Product product, int quantity) {
+        if (!Helper.isValidOrderID(orderID) ||
+                !Helper.isValidProductAssociation(product) ||
+                !Helper.isValidQuantity(quantity)) {
             throw new IllegalArgumentException("Invalid parameters for creating OrderItem");
         }
+
+        double unitPrice = product.getPrice(); // take price directly from product
 
         return new OrderItem.Builder()
                 .setProduct(product)
@@ -28,5 +32,15 @@ public class OrderItemFactory {
                 .build();
     }
 
+
+    public OrderItem copy(OrderItem orderItem) {
+        return new OrderItem.Builder()
+                .setOrderID(orderItem.getOrderID())
+                .setProduct(orderItem.getProduct())
+                .setQuantity(orderItem.getQuantity())
+                .setUnitPrice(orderItem.getUnitPrice())
+                .calculateSubTotal()
+                .build();
+    }
 }
 

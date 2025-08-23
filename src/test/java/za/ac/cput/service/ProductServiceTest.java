@@ -85,9 +85,18 @@ class ProductServiceTest {
         assertFalse(all.isEmpty());
         System.out.println("All products: " + all);
     }
+    @Test
+    void e_delete() {
+        productService.delete(product1.getProductID()); // delete product1
+
+        Product deleted = productService.read(product1.getProductID());
+        assertNull(deleted, "Deleted product should not be found");
+
+        System.out.println(" Deleted product with ID: " + product1.getProductID());
+    }
 
     @Test
-    void e_getByCategory() {
+    void f_getByCategory() {
         List<Product> byCategory = productService.getByCategory(category1);
         assertFalse(byCategory.isEmpty());
         assertEquals(category1.getCategoryId(), byCategory.get(0).getCategory().getCategoryId());
@@ -95,23 +104,24 @@ class ProductServiceTest {
     }
 
     @Test
-    void f_searchByTitle() {
+    void g_searchByTitle() {
         List<Product> found = productService.searchByTitle("Portrait");
         assertFalse(found.isEmpty());
         System.out.println("Products found with 'Portrait': " + found);
     }
 
     @Test
-    void g_filterByPrice() {
+    void h_filterByPrice() {
         List<Product> filtered = productService.filterByPrice(100.0, 200.0);
         assertFalse(filtered.isEmpty());
         System.out.println("Products between 100 and 200: " + filtered);
     }
 
     @Test
-    void h_filterByMaxPrice() {
+    void i_filterByMaxPrice() {
         List<Product> filtered = productService.filterByMaxPrice(200.0);
         assertFalse(filtered.isEmpty());
         System.out.println("Products with price <= 200: " + filtered);
     }
+
 }
